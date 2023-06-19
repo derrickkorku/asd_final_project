@@ -1,8 +1,8 @@
-public class JDialog_AddAccount extends javax.swing.JDialog {
+public abstract class JDialog_AddAccount extends javax.swing.JDialog {
     private String title;
-    private BankFrm parentframe;
+    private MainAppFrm parentframe;
 
-    JDialog_AddAccount(BankFrm parent, String title){
+    JDialog_AddAccount(MainAppFrm parent, String title){
         super(parent);
 
         this.parentframe = parent;
@@ -14,14 +14,8 @@ public class JDialog_AddAccount extends javax.swing.JDialog {
         setSize(400,600);
         setVisible(false);
 
-        JRadioButton_Chk.setText("Checkings");
-        JRadioButton_Chk.setActionCommand("Checkings");
-        getContentPane().add(JRadioButton_Chk);
-        JRadioButton_Chk.setBounds(36,12,84,24);
-        JRadioButton_Sav.setText("Savings");
-        JRadioButton_Sav.setActionCommand("Savings");
-        getContentPane().add(JRadioButton_Sav);
-        JRadioButton_Sav.setBounds(36,36,84,24);
+        setPreControls();
+
         JLabel1.setText("Name");
         getContentPane().add(JLabel1);
         JLabel1.setForeground(java.awt.Color.black);
@@ -78,6 +72,8 @@ public class JDialog_AddAccount extends javax.swing.JDialog {
         JTextField_ACNR.setBounds(120,72,156,20);
         //}}
 
+        setPostControls();
+
         //{{REGISTER_LISTENERS
         SymAction lSymAction = new SymAction();
         JButton_OK.addActionListener(lSymAction);
@@ -85,7 +81,12 @@ public class JDialog_AddAccount extends javax.swing.JDialog {
         //}}
     }
 
+
+    public abstract void setPreControls();
+    public abstract void setPostControls();
+
     //{{DECLARE_CONTROLS
+
     javax.swing.JRadioButton JRadioButton_Chk = new javax.swing.JRadioButton();
     javax.swing.JRadioButton JRadioButton_Sav = new javax.swing.JRadioButton();
     javax.swing.JLabel JLabel1 = new javax.swing.JLabel();
@@ -100,6 +101,9 @@ public class JDialog_AddAccount extends javax.swing.JDialog {
     javax.swing.JTextField JTextField_ST = new javax.swing.JTextField();
     javax.swing.JTextField JTextField_STR = new javax.swing.JTextField();
     javax.swing.JTextField JTextField_ZIP = new javax.swing.JTextField();
+
+    javax.swing.JTextField JTextField_BD = new javax.swing.JTextField();
+    javax.swing.JTextField JTextField_NoOfEmp = new javax.swing.JTextField();
 
     javax.swing.JTextField JTextField_EM = new javax.swing.JTextField();
     javax.swing.JButton JButton_OK = new javax.swing.JButton();
@@ -128,14 +132,15 @@ public class JDialog_AddAccount extends javax.swing.JDialog {
         parentframe.city=JTextField_CT.getText();
         parentframe.zip=JTextField_ZIP.getText();
         parentframe.state=JTextField_ST.getText();
-        if (JRadioButton_Chk.isSelected())
-            parentframe.accountType="Ch";
-        else
-            parentframe.accountType="S";
+
+        actionPerformedCheck();
+
         parentframe.newaccount=true;
         dispose();
 
     }
+
+    public abstract void actionPerformedCheck();
 
     void JButtonCalcel_actionPerformed(java.awt.event.ActionEvent event)
     {

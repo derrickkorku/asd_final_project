@@ -5,7 +5,7 @@ import javax.swing.*;
 /**
  * A basic JFC based application.
  **/
-public class BankFrm extends javax.swing.JFrame
+public class MainAppFrm extends javax.swing.JFrame
 {
     /****
      * init variables in the object
@@ -15,10 +15,10 @@ public class BankFrm extends javax.swing.JFrame
     private DefaultTableModel model;
     private JTable JTable1;
     private JScrollPane JScrollPane1;
-    BankFrm myframe;
+    MainAppFrm myframe;
     private Object rowdata[];
     
-	public BankFrm()
+	public MainAppFrm()
 	{
 		myframe = this;
 
@@ -110,7 +110,7 @@ public class BankFrm extends javax.swing.JFrame
 		    }
 		    
 			//Create a new instance of our application's frame, and make it visible.
-			(new BankFrm()).setVisible(true);
+			(new MainAppFrm()).setVisible(true);
 		} 
 		catch (Throwable t) {
 			t.printStackTrace();
@@ -143,7 +143,7 @@ public class BankFrm extends javax.swing.JFrame
 		public void windowClosing(java.awt.event.WindowEvent event)
 		{
 			Object object = event.getSource();
-			if (object == BankFrm.this)
+			if (object == MainAppFrm.this)
 				BankFrm_windowClosing(event);
 		}
 	}
